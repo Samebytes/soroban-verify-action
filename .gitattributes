@@ -1,0 +1,3 @@
+# Store the ncc bundle byte-for-byte: it contains CRLF lines from dependencies, and CI
+# checks that dist/ matches a fresh build exactly.
+dist/** -text
