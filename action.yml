@@ -1,0 +1,31 @@
+name: Soroban Verify
+description: Rebuild a Soroban contract at a commit, compare its WASM hash to the deployed one, and comment on the PR.
+branding:
+  icon: check-circle
+  color: green
+runs:
+  using: node24
+  main: dist/index.js
+inputs:
+  contract-id:
+    description: Deployed testnet contract ID (C...)
+    required: true
+  repo:
+    description: Source repository URL (defaults to this repository)
+    required: false
+  commit:
+    description: Commit SHA to rebuild (defaults to the triggering SHA)
+    required: false
+  image:
+    description: Pinned toolchain image override
+    required: false
+  registry-url:
+    description: Registry base URL. When set, verified results are posted to it.
+    required: false
+  registry-api-key:
+    description: API key for the registry (pass it from a secret)
+    required: false
+  github-token:
+    description: Token used to post the PR comment
+    required: false
+    default: ${{ github.token }}
